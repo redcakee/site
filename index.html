@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wilderness Agility Arena - High Scores</title>
+    <style>
+        body {
+            background-color: #0c0d0c;
+            color: #d1c9b8;
+            font-family: "Runescape", "Verdana", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #2b2722;
+            border: 4px ridge #5d554a;
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        h1 {
+            color: #ff981f;
+            text-align: center;
+            text-shadow: 2px 2px #000;
+            text-transform: uppercase;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #1a1916;
+        }
+
+        th {
+            background-color: #3b362d;
+            color: #ff981f;
+            padding: 10px;
+            border: 1px solid #5d554a;
+        }
+
+        td {
+            padding: 8px;
+            border: 1px solid #3b362d;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #24221f;
+        }
+
+        .header-icon {
+            height: 40px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>
+        <img src="https://oldschool.runescape.wiki/images/Wilderness_Agility_Arena_icon.png" class="header-icon">
+        Wilderness Agility Masses
+    </h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player Name</th>
+                <th>Masses Completed</th>
+            </tr>
+        </thead>
+        <tbody id="score-body">
+            </tbody>
+    </table>
+</div>
+
+<script>
+    const data = [
+        ["Forgeline/26B", 31], ["bahooky / iron bahooky", 31], ["AFC Monty", 31], ["Harp00n X", 29], ["Ruhh Rohh | Snackcidents", 27], ["AFC Luu Cat", 26], ["redcakee / BlightedDux", 25], ["KittyVibe", 25], ["E A G L ES", 24], ["OT7QUANNY / AB84", 23], ["xsibyl", 22], ["Sohven", 22], ["NotGolf/NotGolfsIron", 22], ["KickKeelowRS", 22], ["Baked Zeetee", 22], ["50mindgnome", 21], ["Or-TzTok / SixSeven Rat", 20], ["gothgrlcliq", 20], ["Danger Kid / Its Me Die", 120], ["Luckyyx", 19], ["Gneep Gnarp", 19], ["40 917XZLP", 16], ["WG/AFC Kartoff", 16], ["Pures always", 16], ["Dr34mc47ch3r / obamas main", 16], ["Zukooh / Dbow-be-gone", 15], ["Tuntuni1000", 15], ["ThePendorian", 15], ["N00b 4 life3", 15], ["eliop", 14], ["Centur-Ion", 15], ["Slush-E", 14], ["sewergurl / minsy", 14], ["moowiy", 14], ["Clxs Here", 14], ["N1troll", 13], ["Lapua", 13], ["gorillagripa/ape hut", 12], ["Girthy Cat", 12], ["FakeSyntax", 12], ["Cowfooot/ Wetfoot14234", 12], ["Yoshi Plushy", 11], ["Piopiox", 11], ["PeeAyArKayER", 11], ["jaesop rock", 11], ["Urdadsboyfrn", 10], ["ThePotReaper", 10], ["PkFox", 10], ["mikescoon", 10], ["drstinkfingr", 10], ["Can Dry", 10], ["LostCrumpet / FoundCrumpet", 9], ["HokuNalu", 9], ["dogbird", 9], ["241", 9], ["Al-Hilal", 9], ["SWANT0NB0MB", 8], ["NHY", 8], ["lostoctopus", 8], ["ICEMANZAC / RIP effect", 8], ["hyper giga", 8], ["HoF Jiraiya", 8], ["weed n rez / DirtyFeller", 7], ["Nishkea", 7], ["Egil Poulsen", 7], ["Baddies", 7], ["alix earle", 7], ["wy s", 6], ["Wario Land 3", 6], ["O-GMauler", 6], ["Iron Falco", 6], ["Group I Am", 6], ["CEO OF W318", 6], ["C Engimeer", 6], ["benzol", 6], ["B B BEARCAT", 6], ["Nonni", 5], ["J0hnyaplseed (Landon)", 5], ["iMudball", 5], ["Fruit Punch", 5], ["cartograph", 5], ["7 Up", 5], ["Vulpes666", 4], ["SirDance514", 4], ["Sasha D Grey", 4], ["G S", 4], ["4f3 b4lls / nacl b4lls", 4], ["cmill4", 4], ["chick fry ri", 4], ["Bigg Grin", 4], ["Sp3c3smalloxdrag", 3], ["Skull Issues", 3], ["razanaXFP", 3], ["RangedTank07", 3], ["Joshi", 3], ["iCbowedJFK", 3], ["Dark Bow Nub", 3], ["D0sd0x", 3], ["Big babygzus", 3], ["APHO NZ", 3], ["AFC Cult", 3], ["300mlcokecan", 3], ["yeshoa", 2], ["treewarriorr", 2], ["Soul", 2], ["Sir Eilel", 2], ["Seanq", 2], ["profascism", 2], ["Phytosophy", 2], ["Naeyria", 2], ["Life", 2], ["laurynhill / obfuscated", 2], ["Justin Vega / Jeff Branch", 2], ["Iron Capto", 2], ["imSmittles", 2], ["H Y P E R", 2], ["Fl0ridaMan69", 2], ["c01nfl1p", 2], ["billy blob", 2], ["Aros No Mae", 2], ["ArmotonPk / PoltsiPk", 2], ["apex pro", 2], ["5mg diazepam / TarpalCunnel", 2], ["Zappy609", 1], ["1x kurt/puffyccino", 1], ["washtefellow", 1], ["unrealsrs", 1], ["UNC Ginz", 1], ["TukkiOS", 1], ["therichyard / therichhard", 1], ["TheGreatBear", 1], ["Tazville/DefIsAWaste", 1], ["Strpur71", 1], ["starryycat", 1], ["Sqwirl", 1], ["Socradeeze / Wilfy", 1], ["simple833", 1], ["Shirokura", 1], ["Shenoy", 1], ["sarm / sarmie", 1], ["Sal Flore", 1], ["S wagdaddy", 1], ["Quest by Era / AFC Q", 1], ["purplecucci", 1], ["Permut3", 1], ["onelegdoc", 1], ["NinthKnight", 1], ["Mr Cassirer", 1], ["MONTER0", 1], ["Monogang", 1], ["Mia Chan", 1], ["Mahanimal", 1], ["Lyk", 1], ["Lothrek", 1], ["knome38", 1], ["iron_rrari / LordEutopio", 1], ["imcutegivegp", 1], ["HuggableHero", 1], ["Holee55", 1], ["Herbzi", 1], ["EqualHeat", 1], ["Diz", 1], ["Dawn Era/Purely Dawn", 1], ["DaReapor / REEEapor", 1], ["Coopercolby", 1], ["Caurvo", 1], ["Ansum Pubes", 1], ["Angelsmaker", 1], ["Amoop169", 1], ["FD", 1]
+    ];
+
+    const tbody = document.getElementById('score-body');
+    data.forEach((entry, index) => {
+        let row = `<tr>
+            <td>${index + 1}</td>
+            <td>${entry[0]}</td>
+            <td>${entry[1]}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+    });
+</script>
+
+</body>
+</html>
