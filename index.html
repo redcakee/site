@@ -4,48 +4,27 @@
     <meta charset="UTF-8">
     <title>AFC Antis of 2026</title>
     <style>
-        body {
-            background-color: #0c0d0c;
-            color: #d1c9b8;
-            font-family: "Verdana", sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .page-layout {
-            display: flex;
-            gap: 20px;
-            max-width: 1200px;
-            margin: auto;
-            align-items: flex-start;
-        }
-
+        body { background-color: #0c0d0c; color: #d1c9b8; font-family: "Verdana", sans-serif; margin: 0; padding: 20px; }
+        .page-layout { display: flex; gap: 20px; max-width: 1200px; margin: auto; align-items: flex-start; }
+        
         .sidebar {
-            flex: 1;
-            background-color: #2b2722;
-            border: 4px ridge #5d554a;
-            padding: 20px;
+            flex: 1; background-color: #2b2722; border: 4px ridge #5d554a; padding: 20px;
+            align-self: flex-start; position: sticky; top: 20px;
         }
-
         .sidebar h2 { color: #ff981f; }
         .sidebar p, .sidebar li { font-size: 0.9em; line-height: 1.5; }
         .sidebar img { width: 100%; margin-top: 15px; border: 1px solid #5d554a; }
 
-        .container {
-            flex: 2;
-            background-color: #2b2722;
-            border: 4px ridge #5d554a;
-            padding: 20px;
-        }
-
+        .container { flex: 2; background-color: #2b2722; border: 4px ridge #5d554a; padding: 20px; }
         h1 { color: #ff981f; text-align: center; text-transform: uppercase; }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #1a1916; }
+        /* Search Bar Style */
+        #searchBar { width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1916; border: 1px solid #5d554a; color: white; box-sizing: border-box; }
+
+        table { width: 100%; border-collapse: collapse; background-color: #1a1916; }
         th { background-color: #3b362d; color: #ff981f; padding: 10px; border: 1px solid #5d554a; }
         td { padding: 8px; border: 1px solid #3b362d; text-align: center; }
         tr:nth-child(even) { background-color: #24221f; }
-
-        .header-icon { height: 40px; vertical-align: middle; margin-right: 10px; }
     </style>
 </head>
 <body>
@@ -53,29 +32,21 @@
 <div class="page-layout">
     <div class="sidebar">
         <h2>Agility FC</h2>
-        <p>Join the <strong>'agility fc'</strong> friends chat (FC) in game to run laps at the Wilderness Agility Course with the hive.</p>
-        <p>The FC is neither a clan nor a service. It is an open community for members to organize and agree on some common rules.</p>
+        <p>Join the <strong>'agility fc'</strong> friends chat (FC) to run laps at the Wilderness Agility Course.</p>
         <ul>
-            <li>We run on Bounty Hunter worlds — 318, 319, and 569.</li>
-            <li>No regular schedule; masses happen through member initiative.</li>
-            <li>Check Discord for mega masses: <a href="https://discordapp.com/channels/1263291279886913545/1265354989925175377" style="color: #ff981f;">Announcement Channel</a></li>
-            <li><strong>How to check:</strong> Look for a pattern in the in-game FC list (sort by world) or scout the course.</li>
-            <li>Course is in Level 50+ Wilderness. <strong>Come at your own risk.</strong></li>
-            <li>Keep Private chat on 'Friends' or 'Off'.</li>
-            <li>Heed the calls of leadership: officers, mods, and admins.</li>
+            <li>Worlds: 318, 319, 569.</li>
+            <li>No schedule: Masses rely on member initiative.</li>
+            <li>Check Discord for announcements.</li>
         </ul>
         <img src="basic-fc-list.png" alt="FC List Example">
     </div>
 
     <div class="container">
         <h1>AFC Antis of 2026</h1>
+        <input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Search for an anti...">
         <table>
             <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Anti</th>
-                    <th>Masses</th>
-                </tr>
+                <tr><th>Rank</th><th>Anti</th><th>Masses</th></tr>
             </thead>
             <tbody id="score-body"></tbody>
         </table>
@@ -83,11 +54,23 @@
 </div>
 
 <script>
-    const data = [["Forgeline/26B", 31], ["bahooky / iron bahooky", 31], ["AFC Monty", 31], ["Harp00n X", 29]]; 
+    const data = [["bahooky / iron bahooky", 85], ["Harp00n X", 79], ["NotGolf/NotGolfsIron", 73], ["AFC Luu Cat", 72], ["Baked Zeetee", 70], ["Forgeline/26B", 65], ["Danger Kid / Its Me Die", 65], ["Gneep Gnarp", 59], ["xsibyl", 58], ["Luckyyx", 51], ["WG/AFC Kartoff", 50], ["N00b 4 life3", 48], ["Zukooh / Dbow-be-gone", 46], ["Pures always", 46], ["AFC Monty / Nieve", 46], ["KittyVibe", 45], ["50mindgnome", 40], ["gothgrlcliq", 39], ["Girthy Cat", 38], ["mikescoon", 36], ["Tuntuni1000", 35], ["E A G L ES", 35], ["Slush-E", 34], ["moowiy", 34], ["40 9", 34], ["SWANT0NB0MB", 33], ["Ruhh Rohh", 31], ["Fruit Punch", 31], ["eliop14", 31], ["AFC Monty", 31], ["Or-TzTok / SixSeven Rat", 30], ["Baddies", 30], ["N1troll", 29], ["Zamo-Yak", 28], ["redcakee", 28], ["OT7QUANNY / AB84", 28], ["HoF Jiraiya", 28], ["Ruhh Rohh | Snackcidents", 27], ["redcakee / BlightedDux", 25], ["Iron Falco", 25], ["dumbways2di3", 25], ["Urdadsboyfrn", 24], ["Lv69 Yoshi", 24], ["Crabfooot / Wetfoot14234", 24], ["wy s", 23], ["Sohven", 23], ["Nonni", 22], ["LostCrumpet / FoundCrumpet", 22], ["Lapua", 22], ["KickKeelowRS", 22], ["7 Up", 22], ["drstinkfingr", 21], ["Centur-Ion", 21], ["BiLuud", 21], ["Nishkea", 20], ["Clxs1232", 20], ["jaesop rock", 19], ["CEO OF W318", 19], ["PkFox", 18], ["Piopiox", 18], ["L_anthus", 18], ["FakeSyntax", 17], ["Dr34mc47ch3r / obamas main", 17], ["XZLP", 16], ["PeeAyArKayER", 16], ["EvenSalmon/Odd Salmon", 16], ["ThePendorian | PendorianToo", 15], ["ThePendorian", 15], ["Seanq", 15], ["San Which", 15], ["Cowfooot/ Wetfoot14234", 15], ["alix earle", 15], ["sewergurl / minsy", 14], ["NHY", 14], ["lostoctopus", 14], ["Joshi", 14], ["Clxs Here", 14], ["Shenoy", 13], ["gorillagripa", 13], ["Time2endyu/B00ty_Patrol", 12], ["Sqwirl", 12], ["MALIClOUS", 12], ["gorillagripa/ape hut", 12], ["Egil Poulsen", 12], ["dogbird924", 12], ["cmill", 12], ["Al-Hilal", 12], ["Yoshi Plushy", 11], ["therichyard", 11], ["f3 b4lls / nacl b4lls", 11], ["C Engimeer", 11], ["ThePotReaper", 10], ["SirDance51", 10], ["RangedTank07", 10], ["chick fry ri", 10], ["Can Dry", 10], ["apex pro", 10], ["Radankoudad", 9], ["lmmiscible", 9], ["HokuNalu", 9], ["APHO NZ", 9], ["sarahconnor", 8], ["RPG Dad ( Wario-Man )", 8], ["ICEMANZAC / RIP effect", 8], ["hyper giga", 8], ["HuggableHero", 8], ["Ferox Fox", 8], ["B B BEARCAT", 8], ["Aros No Mae", 8], ["weed n rez / DirtyFeller", 7], ["unrealsrs", 7], ["cartograf", 7], ["benzol", 7], ["another", 7], ["Wario Land 3", 6], ["treewarriorr", 6], ["TheCowdorian", 6], ["Soul Bruh / Swordfish II", 6], ["O-GMauler", 6], ["laurynhill / obfuscated", 6], ["Group I Am", 6], ["Dingo", 6], ["Dawn Era/Purely Dawn", 6], ["Dark Bow Nub", 6], ["TB Splits", 5], ["Sir Eilel", 5], ["Lox me up", 5], ["J0hnyaplseed (Landon)", 5], ["iMudball", 5], ["D0sd0x", 5], ["cartograph", 5], ["c01nfl1p", 5], ["Zappy609", 4], ["Vulpes666", 4], ["vio 204", 4], ["Strpur74", 4], ["stimulat3/lilstim", 4], ["smalloxdrag", 4], ["Sasha D Grey", 4], ["Sal Flore", 4], ["NinthKnight", 4], ["G S", 4], ["Bigg Grin", 4], ["Tazville/DefIsAWaste", 3], ["Sp3c3sleet563", 3], ["Skull Issues", 3], ["razanaXFP", 3], ["Quest by Era / AFC Q", 3], ["purplecucci", 3], ["platpanzer", 3], ["Ohlordzz", 3], ["nahkrin / my silmarils", 3], ["jamfilledbun", 3], ["IM Rickert / Cola 03", 3], ["iCbowedJFK", 3], ["H Y P E R", 3], ["EqualHeat", 3], ["daddytim6969", 3], ["c hlcken / bryanmbeumo", 3], ["Btc xd / Zuzhy", 3], ["Big babygzus", 3], ["BACKBL0WER", 3], ["AFC culvers", 3], ["AFC Cult", 3], ["300mlcokecan", 3], ["Zzuby", 2], ["Zuzhy", 2], ["Z0MBE", 2], ["yeshoa", 2], ["wheresmomo", 2], ["washtefellow", 2], ["UnknownCr", 2], ["trashtierfps", 2], ["TheGreatBear", 2], ["starryycat", 2], ["Soul", 2], ["Socradeeze / Wilfy", 2], ["Skopty", 2], ["S wagdaddy", 2], ["profascism", 2], ["Prax", 2], ["Phytosophy", 2], ["Naeyria", 2], ["lilspaceTgrl / sillyfemboi", 2], ["Life", 2], ["knome38", 2], ["Justin Vega / Jeff Branch", 2], ["JaysunMimosa", 2], ["Iron Dan Mk2 / Dan Gerzone", 2], ["Iron Capto", 2], ["imSmittles", 2], ["IGN_Jibjab", 2], ["idkRYAN", 2], ["Fl0ridaMan69", 2], ["drinkyhobo", 2], ["Don", 2], ["djshivy", 2], ["danfucks", 2], ["billy blob", 2], ["ArmotonPk / PoltsiPk", 2], ["Angelsmaker", 2], ["69FD", 2], ["5mg diazepam / TarpalCunnel", 2], ["YaYaFun1", 1], ["Xafijiiva", 1], ["x kurt/puffyccino", 1], ["waffle stand", 1], ["vyerisaa", 1], ["unknown-user", 1], ["UNC Ginz", 1], ["tw1stedpyro/killianx/sunavabeach", 1], ["TukkiOS", 1], ["Tonyui8901", 1], ["therichyard / therichhard", 1], ["thenewguy421", 1], ["Theegollum", 1], ["thatdadd/danger&stillyputty", 1], ["Swagdaddyy69", 1], ["suh dude 6q", 1], ["sticky wet", 1], ["Stealthgecko/Stealthgeko", 1], ["Speedyeugene", 1], ["simple833", 1], ["Shupa | Shupa Also", 1], ["Shirokura", 1], ["Satanparti", 1], ["sarm / sarmie", 1], ["Revs9k", 1], ["Redcoats07", 1], ["Raydenxox", 1], ["Permut3", 1], ["papitojavs", 1], ["OTS 91", 1], ["onelegdoc", 1], ["Oakstone", 1], ["NOTSAMPI", 1], ["NostalgiaSG", 1], ["N atee", 1], ["MrK6B", 1], ["Mr Cassirer", 1], ["Mowing Solo", 1], ["Moushley", 1], ["MotorMan333", 1], ["Motodick", 1], ["MONTER0", 1], ["Monogang", 1], ["Misted Fox", 1], ["Mia Chan", 1], ["meneer baard", 1], ["Max Shush", 1], ["Mahanimal", 1], ["Lyk", 1], ["Lothrek", 1], ["linklink101", 1], ["Kindrz", 1], ["Kartoffel1021", 1], ["Joe", 1], ["jadzdad", 1], ["iron_rrari / LordEutopio", 1], ["imcutegivegp", 1], ["Im Gergeosrs", 1], ["im a trapdad", 1], ["Holee55", 1], ["Herbzi/D2MB", 1], ["Herbzi", 1], ["gimsgbearcat", 1], ["ghoolieghost", 1], ["ghengis d0ng", 1], ["Flash4thAuto", 1], ["F l T Z Y", 1], ["Evx_c", 1], ["Eaastyy", 1], ["Diz", 1], ["DaReapor / REEEapor", 1], ["cs gas", 1], ["Crumbful Sin", 1], ["cpt skinny", 1], ["Coopercolby", 1], ["connon3000", 1], ["Caurvo", 1], ["Captain Seli / Lyrhea", 1], ["Bugveyron", 1], ["brotaoto", 1], ["Bomdiggidy", 1], ["Big Boss O", 1], ["batch", 1], ["Badonnkadonk", 1], ["Ansum Pubes", 1], ["Amoop1", 1], ["aawildboi", 1], ["a pawg1", 1], ["0x7Bcbd48abc", 1]];
+
+    // Initialize Table
     const tbody = document.getElementById('score-body');
     data.forEach((entry, index) => {
         tbody.innerHTML += `<tr><td>${index + 1}</td><td>${entry[0]}</td><td>${entry[1]}</td></tr>`;
     });
+
+    // Search/Filter Function
+    function filterTable() {
+        let input = document.getElementById("searchBar").value.toUpperCase();
+        let rows = tbody.getElementsByTagName("tr");
+        for (let i = 0; i < rows.length; i++) {
+            let name = rows[i].getElementsByTagName("td")[1].textContent.toUpperCase();
+            rows[i].style.display = name.indexOf(input) > -1 ? "" : "none";
+        }
+    }
 </script>
 
 </body>
