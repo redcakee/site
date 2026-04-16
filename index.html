@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Wilderness Agility FC</title>
     <style>
-        /* OSRS Wilderness Theme - Yellow Highlights */
         body { 
             background-color: #1a1714; 
             color: #d1c9b8; 
@@ -99,7 +98,8 @@
             background: #1a1916; border: 2px solid #5d554a; color: #ffc107; box-sizing: border-box;
         }
         
-        .video-container { width: 100%; height: 400px; }
+        .video-container { width: 100%; height: 400px; margin-bottom: 20px; }
+        .chat-container { width: 100%; height: 350px; background-color: #2b2722; border: 4px ridge #5d554a; }
     </style>
 </head>
 <body onload="loadContent('live')">
@@ -144,6 +144,10 @@
         live: `<h1>Live Stream</h1>
                <div class="video-container">
                    <iframe src="https://player.kick.com/joshi" height="100%" width="100%" frameborder="0" allowfullscreen="true"></iframe>
+               </div>
+               <h1>Chat</h1>
+               <div class="chat-container">
+                   <iframe src="https://xat.com/embed/chat.php#id=YOUR_XAT_ID" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
                </div>`
     };
 
