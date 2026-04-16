@@ -100,9 +100,11 @@
             width: 100%; padding: 10px; margin-bottom: 15px; 
             background: #1a1916; border: 2px solid #5d554a; color: #ffc107; box-sizing: border-box;
         }
+        
+        .video-container { width: 100%; height: 400px; }
     </style>
 </head>
-<body onload="loadContent('basic')">
+<body onload="loadContent('live')">
 
 <div id="banner-container">
     <img id="banner-img" src="image_0.png" alt="Wilderness Agility FC Banner">
@@ -112,7 +114,8 @@
     <a onclick="loadContent('basic')">Basic</a> | 
     <a onclick="loadContent('gear')">Gear</a> | 
     <a onclick="loadContent('strategy')">Strategy</a> | 
-    <a onclick="loadContent('technique')">Technique</a>
+    <a onclick="loadContent('technique')">Technique</a> |
+    <a onclick="loadContent('live')">Live</a>
 </nav>
 
 <div class="page-layout">
@@ -154,7 +157,16 @@
                <p>Please do NOT edit the gear page before speaking to us. You're welcome to open a ticket in <a href="#">support</a>.</p>
                <p>Check out <a onclick="loadContent('strategy')" style="cursor:pointer; color:#ff981f; text-decoration:underline;">Strategy</a> to familiarize yourself with common strategies!</p>`,
         strategy: "<h1>Strategy</h1><p>Organize with the hive to maintain the rotation and maximize agility XP/hr.</p>",
-        technique: "<h1>Technique</h1><p>Focus on efficient laps and pathing to maximize your mass output.</p>"
+        technique: "<h1>Technique</h1><p>Focus on efficient laps and pathing to maximize your mass output.</p>",
+        live: `<h1>Live Stream</h1>
+               <div class="video-container">
+                   <iframe src="https://player.kick.com/joshi" 
+                           height="100%" 
+                           width="100%" 
+                           frameborder="0" 
+                           allowfullscreen="true">
+                   </iframe>
+               </div>`
     };
 
     function loadContent(page) {
